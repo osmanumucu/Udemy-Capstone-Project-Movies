@@ -13,14 +13,20 @@ const db = new pg.Client({
     port: 5432,
 });
 
+db.connect()
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-let movies = [];
+let movieList = [];
   
 app.get("/", async (req, res) => {
-    res.render("index.ejs")
-})
+    const result = await db.query("SELECT * FROM movies");
+    movieList = result.rows;
+    res.render("index.ejs", {
+        movieList: movieList
+    });
+});
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`)

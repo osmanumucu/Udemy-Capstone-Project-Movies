@@ -1,1 +1,41 @@
 <%- include("partials/header.ejs") %>
+
+<section class="container">
+    <h1>Osman Umucu</h1>
+    <h2>Movies I've watched</h2>
+    <p>On this website I'm publishing the movies I've watched with movie details and my own opinion</p>
+
+</section>
+
+<hr class="container">
+
+<section id="content" class="container">
+    <% for (let i = 0; i < movieList.length; i++) { %>
+        <div class="d-flex flex-row">
+            <img class="image me-5" src="<%= movieList[i].image %>" alt="">
+    
+            <div class="d-flex flex-column me-2">
+                <h3 class="title"><%= movieList[i].name %></h3>
+                <div class="d-flex flex-column">
+                    <small>Release date</small>
+                    <small><%= movieList[i].year %></small>
+                </div>
+                <p><%= movieList[i].description %> </p>
+            </div>
+            <div class="ms-auto d-flex">
+                <div>
+                    <small>Imdb rating</small>
+                    <h3 class="imdbRating me-2">⭐ <%= movieList[i].imdb_rating %></h3>
+                </div>
+                <div>
+                    <small>My Rating</small>
+                    <h3 class="myRating">⭐ <%= movieList[i].my_rating %></h3>
+                </div>
+            </div>
+        </div>
+        <hr>
+    <% } %>
+
+</section>
+
+<%- include("partials/footer.ejs") %>
